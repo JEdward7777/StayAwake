@@ -27,8 +27,6 @@ class Beeper(Thread):
 
 
 while not done:
-    time.sleep( delay )
-
     beeper = Beeper()
 
     #make a default one which can get accidentally pressed without making the dialog go away.
@@ -46,3 +44,4 @@ while not done:
     else:
         done = True
 
+    if not done: time.sleep( delay )
