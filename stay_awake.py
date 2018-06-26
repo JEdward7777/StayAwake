@@ -1,8 +1,10 @@
 from threading import Thread,Event
 import easygui
 import time
+import random
 
 delay = 10
+history = ""
 
 done = False
 
@@ -34,14 +36,20 @@ while not done:
     choice = ":-)"
     beeper.start()
     while choice == ":-)":
-        choice = easygui.buttonbox( str(delay) + " status?", choices=choices )
+        choice = easygui.buttonbox( str(delay) + " status?\n" + history, choices=choices )
     beeper.stop()
 
     if choice == "^":
         delay /= .8
+        history += "^"
     elif choice == "v":
         delay *= .8
+        history += "v"
     else:
         done = True
+
+    #add some random difference to the delay so that
+    #if there are multiple delays running they don't all pile up on eachother.
+    delay *= (random.random()*(1.1-.9)+.9)
 
     if not done: time.sleep( delay )
