@@ -19,7 +19,7 @@ class Beeper(Thread):
         time.sleep(3)
         i = 0
         while not self._stop.is_set() and i < 20:
-            print "\a"
+            print( "\a" )
             time.sleep(0.2)
             i += 1
             
