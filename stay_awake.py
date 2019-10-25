@@ -2,6 +2,7 @@ from threading import Thread,Event
 import easygui
 import time
 import random
+import sys
 
 delay = 10
 history = ""
@@ -26,7 +27,7 @@ class Beeper(Thread):
     def stop(self):
         self._stop.set()
 
-
+message = " ".join( sys.argv[1:] )
 
 while not done:
     beeper = Beeper()
@@ -36,7 +37,7 @@ while not done:
     choice = ":-)"
     beeper.start()
     while choice == ":-)":
-        choice = easygui.buttonbox( str(delay) + " status?\n" + history, choices=choices )
+        choice = easygui.buttonbox( str(delay) + " status? " + message+ " \n" + history, choices=choices )
     beeper.stop()
 
     if choice == "^":
