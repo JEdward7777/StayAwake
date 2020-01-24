@@ -29,6 +29,9 @@ class Beeper(Thread):
 
 message = " ".join( sys.argv[1:] )
 
+if message.strip() == "ask":
+    message = easygui.enterbox( "Message?" )
+
 while not done:
     beeper = Beeper()
 
