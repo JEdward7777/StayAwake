@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from threading import Thread,Event
 import easygui
 import time
