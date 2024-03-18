@@ -29,9 +29,11 @@ class Beeper(Thread):
         self._stop.set()
 
 message = " ".join( sys.argv[1:] )
+flipped = False
 
 if message.strip() == "ask":
     message = easygui.enterbox( "Message?" )
+    flipped = easygui.ynbox( "Flip polarity?" )
 
 while not done:
     beeper = Beeper()
@@ -45,10 +47,16 @@ while not done:
     beeper.stop()
 
     if choice == "^":
-        delay /= .8
+        if not flipped:
+            delay /= .8
+        else:
+            delay *= .8
         history += "^"
     elif choice == "v":
-        delay *= .8
+        if not flipped:
+            delay *= .8
+        else:
+            delay /= .8
         history += "v"
     else:
         done = True
