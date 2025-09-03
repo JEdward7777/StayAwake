@@ -35,6 +35,8 @@ if message.strip() == "ask":
     message = easygui.enterbox( "Message?" )
     flipped = easygui.ynbox( "Flip polarity?" )
 
+if message is None: message = ""
+
 while not done:
     beeper = Beeper()
 
